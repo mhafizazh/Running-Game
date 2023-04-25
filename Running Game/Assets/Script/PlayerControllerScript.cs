@@ -21,12 +21,20 @@ public class PlayerControllerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
+         * if statement below to delay player to hit space or jump
+         * player can only jump if the player in the ground
+         */
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
             playerRb.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
             isOnGround = false;
         }
     }
+    /*
+     * method below is for trigerring program if the player hit the obstacle
+     * add "Obstacle" tag in obstacle asset prefab so the programs can find the obstacle
+     */
     private void OnCollisionEnter(Collision collision)
     {
         isOnGround = true;
