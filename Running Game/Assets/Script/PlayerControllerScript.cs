@@ -9,11 +9,13 @@ public class PlayerControllerScript : MonoBehaviour
     public float jumpforce = 10;
     public float gravityModifier = 1;
     public bool isOnGround = false;
-    public bool gameOver = true;
+    public bool gameOver = false;
+    private Animator playerAnim;
     // Start is called before the first frame update
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
+        playerAnim = GetComponent<Animator>();
         Physics.gravity *= gravityModifier;
 
     }
@@ -29,6 +31,7 @@ public class PlayerControllerScript : MonoBehaviour
         {
             playerRb.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
             isOnGround = false;
+            playerAnim.SetTrigger("Jump_trig");
         }
     }
     /*
